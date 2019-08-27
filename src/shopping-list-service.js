@@ -1,21 +1,28 @@
-const shoppingListService = {
+const ShoppingListService = {
     getAllItems(knex) {
         return knex
-        .select('*')
         .from('shopping_list')
-    },
+        .select('*')
+        },
 
     getById(knex, id) {
-        return knex.from('shopping_list')
+        return knex
+        .from('shopping_list')
         .select('*')
         .where('id', id)
         .first()
+    },
+
+    updateItem(knex, updateItem, id) {
+        return knex('shopping_list')
+        .where({ id })
+        .update(updateItem)
     },
     
     deleteItem(knex, id) {
         return knex('shopping_list')
         .where({ id })
-        .update(newItemFields)
+        .delete()
     },
 
     insertItem(knex, newItem) {
@@ -27,4 +34,4 @@ const shoppingListService = {
     },
 }
 
-module exports = ShoppingListService
+module.exports = ShoppingListService
